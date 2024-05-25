@@ -4,7 +4,7 @@ import java.util.*;
 
 //점 만날 때마다 도형의 개수 ++
 
-public class 방의_개수 {
+public class 방의_개수_X {
     public static void main(String[] args) {
         int[] arrows = {6, 6, 6, 4, 4, 4, 2, 2, 2, 0, 0, 0, 1, 6, 5, 5, 3, 6, 0};
 

@@ -21,14 +21,27 @@ public class 정수삼각형 {
         sum[0][0] = triangle[0][0];
 
         //모든 왼쪽 배열의 합
-        for(int i = 1 ; i < triangle.length ; i++){
-            sum[i][0] = sum[i-1][0] + triangle[i][0];
-        }
-
-        for(int i = 1;i< triangle.length; i++){
-            for(int j = 1; j < triangle[i].length; j++) {
-                // 왼쪽 위에서 내려와 더했을 때, 오른쪽 위에서 내려와 더했을 때 중 최대값 저장
-                sum[i][j] = Math.max(sum[i-1][j-1] + triangle[i][j], sum[i-1][j] + triangle[i][j]);
+//        for(int i = 1 ; i < triangle.length ; i++){
+//            sum[i][0] = sum[i-1][0] + triangle[i][0];
+//        }
+//
+//        for(int i = 1;i< triangle.length; i++){
+//            for(int j = 1; j < triangle[i].length; j++) {
+//                // 왼쪽 위에서 내려와 더했을 때, 오른쪽 위에서 내려와 더했을 때 중 최대값 저장
+//                sum[i][j] = Math.max(sum[i-1][j-1] + triangle[i][j], sum[i-1][j] + triangle[i][j]);
+//            }
+//        }
+//
+        for(int i = 1; i<triangle.length;i++){
+            for(int j = 0; j < triangle[i].length ; j++){
+//                sum[i][j] = Math.max(sum[i-1][j] + triangle[i][j], sum[i-1][j] + triangle[i][j+1]);
+                if (j == 0) {
+                    sum[i][j] = sum[i-1][j] + triangle[i][j]; // 왼쪽 가장자리
+                } else if (j == triangle[i].length - 1) {
+                    sum[i][j] = sum[i-1][j-1] + triangle[i][j]; // 오른쪽 가장자리
+                } else {
+                    sum[i][j] = Math.max(sum[i-1][j-1] + triangle[i][j], sum[i-1][j] + triangle[i][j]); // 가운데
+                }
             }
         }
 
