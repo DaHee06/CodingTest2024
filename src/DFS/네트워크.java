@@ -16,13 +16,27 @@ public class 네트워크 {
     public static int solution(int n, int[][] computers) {
         int answer = 0;
 
-        for(int i = 0; i<computers.length;i++){
-            for(int j = 0; j < computers.length ; j++){
-                if(i != j){
-                    if(computers[i][j] == 1) answer++;
-                }
+        boolean[] check = new boolean[computers.length];
+
+        for (int i = 0; i < computers.length; i++) {
+            if(!check[i]){
+                dfs(computers, i, check);
+                answer++;
             }
         }
-        return Math.round(answer/2);
+
+
+        return answer;
+    }
+
+    public static boolean[] dfs(int[][] computers, int i, boolean[] check) {
+        check[i] = true;
+
+        for (int j = 0; j < computers.length; j++) {
+            if (i != j && computers[i][j] == 1 && check[j] == false) {
+                check = dfs(computers, j, check);
+            }
+        }
+        return check;
     }
 }
